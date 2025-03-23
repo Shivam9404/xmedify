@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function SearchHospital() {
     const [states, setStates] = useState([]);
-    const [cities, setCities] = useState({});
+    const [cities, setCities] = useState([]);
     const [formData, setFormData] = useState({ state: "", city: "" });
 
     const navigate = useNavigate();
@@ -28,9 +28,9 @@ export default function SearchHospital() {
 
     useEffect(() => {
         const fetchCities = async () => {
-            setCities({});
+            setCities([]);
             setFormData((prev) => ({ ...prev, city: "" }));
-
+    
             if (formData.state) {
                 try {
                     const response = await axios.get(`https://meddata-backend.onrender.com/cities/${formData.state}`);
@@ -40,9 +40,9 @@ export default function SearchHospital() {
                 }
             }
         };
-
+    
         fetchCities();
-    }, [formData.state]);
+    }, [formData.state]);    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
