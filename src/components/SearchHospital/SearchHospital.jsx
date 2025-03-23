@@ -27,22 +27,25 @@ export default function SearchHospital() {
     }, []);
 
     useEffect(() => {
-        const fetchCities = async () => {
-            setCities([]);
-            setFormData((prev) => ({ ...prev, city: "" }));
+        setCities([]);
+        setFormData((prev) => ({ ...prev, city: "" }));  
+    }, [formData.state]);
     
-            if (formData.state) {
-                try {
-                    const response = await axios.get(`https://meddata-backend.onrender.com/cities/${formData.state}`);
-                    setCities(response.data);
-                } catch (error) {
-                    console.error("Error fetching cities:", error);
-                }
+    useEffect(() => {
+        if (!formData.state) return;
+    
+        const fetchCities = async () => {
+            try {
+                const response = await axios.get(`https://meddata-backend.onrender.com/cities/${formData.state}`);
+                setCities(response.data);
+            } catch (error) {
+                console.error("Error fetching cities:", error);
             }
         };
     
         fetchCities();
-    }, [formData.state]);    
+    }, [formData.state]);
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -108,7 +111,7 @@ export default function SearchHospital() {
                 <MenuItem disabled value="">
                     City
                 </MenuItem>
-                {cities[formData.state]?.map((city) => (
+                {cities.map((city) => (
                     <MenuItem key={city} value={city}>
                         {city}
                     </MenuItem>
