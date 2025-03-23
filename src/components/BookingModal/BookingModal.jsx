@@ -82,7 +82,9 @@ export default function BookingModal({
                         Please enter your email to confirm booking for{" "}
                     </Box>
                     <Box component="span" fontWeight={600}>
-                        {`${bookingDetails.bookingTime} on ${formatDate(bookingDetails.bookingDate)}`}
+                        {bookingDetails && bookingDetails.bookingTime
+                            ? `${bookingDetails.bookingTime} on ${formatDate(bookingDetails.bookingDate)}`
+                            : "Not available"}
                     </Box>
                 </Typography>
 

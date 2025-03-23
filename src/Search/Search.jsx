@@ -46,9 +46,15 @@ export default function Search() {
     }, [state, city]);
 
     useEffect(() => {
-        setState(searchParams.get("state"));
-        setCity(searchParams.get("city"));
+        const stateParam = searchParams.get("state");
+        const cityParam = searchParams.get("city");
+    
+        if (stateParam && cityParam) {
+            setState(stateParam);
+            setCity(cityParam);
+        }
     }, [searchParams]);
+    
 
     const handleBookingModal = (details) => {
         setBookingDetails(details);

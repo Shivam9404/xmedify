@@ -55,9 +55,11 @@ export default function SearchHospital() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (formData.state && formData.city) {
-            navigate(`/search?state=${formData.state}&city=${formData.city}`);
+            navigate(`/search?state=${formData.state}&city=${formData.city}`, { replace: true });
+            window.location.reload(); // Force reloading the page to ensure the search works
         }
     };
+    
 
     return (
         <Box
