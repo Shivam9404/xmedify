@@ -90,7 +90,7 @@ export default function Search() {
                     {hospitals.length > 0 && (
                         <Box mb={3}>
                             <Typography component="h1" fontSize={24} lineHeight={1.1} mb={2} fontWeight={500}>
-                                {hospitals.length} medical centers available in
+                                {hospitals.length} medical centers available in{" "}
                                 <span style={{ textTransform: "capitalize" }}>
                                     {city?.toLocaleLowerCase()}
                                 </span>
